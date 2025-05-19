@@ -1,0 +1,15 @@
+<h1>Editing quote</h1>
+
+<% if current_user == @quote.user %>
+  <%= render "form", quote: @quote %>
+<% end %>
+<br>
+
+<div>
+<%= link_to "Show this quote", @home %> |
+<% if current_user == @quote.user %>
+  <%= link_to "Back to quotes", quotes_path %>
+<% else %>
+  <%= link_to "Back to home", root_path %>
+<% end %>
+</div>

@@ -1,0 +1,42 @@
+<%= form_with(model: source) do |form| %>
+  <% if source.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(source.errors.count, "error") %> prohibited this source from being saved:</h2>
+
+      <ul>
+        <% source.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :fname, style: "display: block" %>
+    <%= form.text_field :fname %>
+  </div>
+
+  <div>
+    <%= form.label :lname, style: "display: block" %>
+    <%= form.text_field :lname %>
+  </div>
+
+  <div>
+    <%= form.label :byear, style: "display: block" %>
+    <%= form.text_field :byear %>
+  </div>
+
+  <div>
+    <%= form.label :dyear, style: "display: block" %>
+    <%= form.text_field :dyear %>
+  </div>
+
+  <div>
+    <%= form.label :bio, style: "display: block" %>
+    <%= form.text_area :bio %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

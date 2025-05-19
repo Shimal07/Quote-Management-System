@@ -1,0 +1,85 @@
+<nav class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#">RB Home</a> -->
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+        <%= link_to "Home", root_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+        <li><a class="nav-link" href="/search">Search</a></li>
+        </li>
+        <li class="nav-item">
+        <%= link_to "About", about_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+        <!-- Sign Up link: -->
+          <% if !logged_in? %>
+            <li class="nav-item">
+            <li><%= link_to 'Sign Up', new_user_path, class:"nav-link" %></li>
+            </li>
+          <% end %>
+        </li>
+        <li class="nav-item">
+        <!-- Sign In link: -->
+          <% if !logged_in? %>
+            <li class="nav-item">
+            <li><%= link_to 'Sign In', login_path, class:"nav-link" %></li>
+            </li>
+          <% end %>
+        </li>
+        <li class="nav-item">
+        <!-- Sign Out link: -->
+          <% if logged_in? %>
+            <li class="nav-item">
+            <%= button_to "Sign Out", logout_path, method: :delete, class:"btn btn-link nav-link" %>
+            </li>
+          <% end %>
+        </li>
+        <li class="nav-item dropdown">
+        <% if logged_in? && !is_administrator? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            User
+          </a>
+          <ul class="dropdown-menu">
+            <%= link_to "My Account", userhome_path, class:"dropdown-item" %>
+            <%= link_to "My Quotes",your_quotes_path, class:"dropdown-item" %>
+            <li><hr class="dropdown-divider"></li>
+            <%= link_to "Add New quote", new_quote_path, class:"dropdown-item" %>
+          </ul>
+        </li>
+      <% end %>
+        </li>
+
+        <li class="nav-item dropdown">
+        <% if logged_in? && is_administrator? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+          <ul class="dropdown-menu">
+           <%= link_to "Admin Home", admin_path, class:"dropdown-item" %>
+            <li><%= link_to 'Manage Users', users_path, class:"dropdown-item" %></li>
+          </ul>
+        </li>
+      <% end %>
+        </li>
+
+        <!--
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+        -->
+      </ul>
+      <!--
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      -->
+    </div>
+  </div>
+</nav>

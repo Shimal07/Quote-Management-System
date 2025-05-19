@@ -1,0 +1,71 @@
+<!--Form with the feild attributes to create and edit quotes-->
+<% if @quote.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @quote.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @quote, url: @quote.new_record? ? quotes_path : quote_path(@quote), method: @quote.new_record? ? :post : :patch, local: true) do |form| %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.hidden_field :id if !@quote.new_record? %>
+  
+  <div class="form-group" style="padding-bottom: 10px;">
+    <%= form.label :qtext,"Quote text", style: "display: block" %>
+    <%= form.text_field :qtext, placeholder: 'Quote text', class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :qyear, "Published Year(Optional)", style: "display: block" %>
+    <%= form.text_field :qyear, placeholder: 'Quote year', class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :qcom, "Comment(Optional)", style: "display: block" %>
+    <%= form.text_area :qcom, placeholder: 'Quote comment', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :category_name, "Category Name" %>
+    <%= form.text_field :category_name, placeholder: 'Enter a category name', class: 'form-control' %>
+  </div>
+
+  <div class="form-check" style="padding-bottom: 10px;">
+    <%= form.label :is_public do %>
+      Public
+      <%= form.check_box :is_public, class: "form-check-input" %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :fname, "Philosopher First Name", style: "display: block" %>
+    <%= form.text_field :fname, placeholder: 'First name', class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :lname, "Philosopher Last Name(Optional)", style: "display: block" %>
+    <%= form.text_field :lname, placeholder: 'Last name', class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :byear, "Philosopher Birth Year(Optional)", style: "display: block" %>
+    <%= form.text_field :byear, placeholder: 'Birth year', class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :dyear, "Philosopher Death Year(Optional)", style: "display: block" %>
+    <%= form.text_field :dyear, placeholder: 'Death year', class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :bio, "Philosopher Bio(Optional)", style: "display: block" %>
+    <%= form.text_area :bio, placeholder: 'Bio', class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

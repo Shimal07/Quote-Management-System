@@ -1,0 +1,11 @@
+<h3>Quotes</h3>
+<hr />
+<% @qoutes.each do |quote| %>
+ <div class="card bg-body-tertiary" style="margin-bottom:10px">
+ <div class="card-body">
+ <h4 class="card-title"><%= quote.qtext %></h4>
+ <p class="card-text"><%= "by #{quote.source.fname} #{quote.source.lname}" %><br />[<a href="/quotes/<%= 
+quote.id %>">Read full quote</a>]</p>
+ </div>
+ </div>
+<% end %>

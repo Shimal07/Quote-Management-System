@@ -1,0 +1,43 @@
+<!--Display Quote Body-->
+<div id="<%= dom_id quote %>" class="card bg-body-tertiary" style="margin-bottom:10px">
+<div class="card-body">
+  <p>
+    <strong>Quote:</strong>
+    "<%= quote.qtext %>"
+  </p>
+
+  <p>
+    <strong>Published year:</strong>
+    <%= quote.qyear %>
+  </p>
+
+  <p>
+  <strong>Category:</strong>
+  <% if quote.categories.present? %>
+    <%= quote.categories.pluck(:catname).join(', ') %>
+  <% else %>
+    Category not assigned
+  <% end %>
+</p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= quote.qcom %>
+  </p>
+
+  <p>
+    <strong>Ispublic:</strong>
+    <%= quote.ispublic %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= "#{quote.user.fname} #{quote.user.lname}" %>
+  </p>
+
+  <p>
+    <strong>Philospher:</strong>
+    <%= "#{quote.source.fname} #{quote.source.lname}" %>
+  </p>
+</div>
+</div>
